@@ -23,21 +23,21 @@ For this project, you must:
 - Have at least two models with a one-to-many relationship.
 - At a minimum, set up the following API routes in Sinatra:
   - create and read actions for both models
-  - full CRUD capability for one of the models: 
-  The update action should be implemented using a form that is 
-  pre-filled with existing values for the object. On submission of 
-  the form, the object should update. Note: Using a like button or 
-  similar will not meet the update requirement.
+  - full CRUD capability for one of the models:
+    The update action should be implemented using a form that is
+    pre-filled with existing values for the object. On submission of
+    the form, the object should update. Note: Using a like button or
+    similar will not meet the update requirement.
 - Build a separate React frontend application that interacts with the API to
   perform CRUD actions.
 - Implement proper front end state management. You should be updating state using a
-  setState function after receiving your response from a POST, PATCH, or DELETE 
-  request. You should NOT be relying on a GET request to update state. 
+  setState function after receiving your response from a POST, PATCH, or DELETE
+  request. You should NOT be relying on a GET request to update state.
 - Use good OO design patterns. You should have separate classes for each of your
-  models, and create instance and class methods as necessary. 
+  models, and create instance and class methods as necessary.
 - Routes in your application (both client side and back end) should follow RESTful
   conventions.
-- Use your back end optimally. Pass JSON for related associations to the front 
+- Use your back end optimally. Pass JSON for related associations to the front
   end from the back end. You should use active record methods in your controller to grab
   the needed data from your database and provide as JSON to the front end. You
   should NOT be relying on filtering front end state or a separate fetch request to
@@ -136,3 +136,33 @@ fetch("http://localhost:9292/test")
 [dbdiagram.io]: https://dbdiagram.io/
 [postman download]: https://www.postman.com/downloads/
 [network tab]: https://developer.chrome.com/docs/devtools/network/
+
+phase3-independent_project :Movie Api
+Focus 🎯
+Building a Sinatra API backend that uses Active Record to access and persist data in a database, which will be used by a separate React frontend that interacts with the database via the API.
+
+Learning Goals 👨‍🚀
+Use Active Record to interact with a database.
+Have a minimum of two models with a one-to-many relationship.
+Create API routes in Sinatra that handles at least three different CRUD actions for at least one of your Active Record models.
+Build a separate React frontend application that interacts with the API to perform CRUD actions.
+Use good OO design patterns. You should have separate classes for each of your models, and create instance and class methods as necessary.
+Backend Setup ✴️
+cd into phase3-independent_project folder and run bundle install from your terminal which will install all the gems
+seed the database with data using cmd bundle exec rake db:seed or alternatively you can use bundle exec rake db:seed:replant to delete everything in the database and seed it with data to be fetched by an API
+Finally run bundle exec rake server to keep your backend running on http://localhost:9292 💥
+Endpoints API 🛠️
+✅ Your base URL API for storing posts in SQLite: http://localhost:9292/movies
+
+Core Deliverables 📈
+As a user 👨‍💻, I can:
+
+Create movies
+Read movies
+Update movies
+Delete movies
+Search for movies using search input 👍
+Authors 🖊️
+This project was contributed to by:
+
+Mark Chweya
