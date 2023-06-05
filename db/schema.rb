@@ -10,39 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_02_145933) do
+ActiveRecord::Schema.define(version: 6) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-  enable_extension "timescaledb"
+  create_table "addresses", force: :cascade do |t|
+    t.string "city"
+    t.string "county"
+    t.integer "contact_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_addresses_on_contact_id"
+  end
 
-  create_table "landlords", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
-    t.integer "phone_number"
-    t.string "img_url"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "phone"
+    t.index ["category_id"], name: "index_contacts_on_category_id"
   end
 
-  create_table "properties", force: :cascade do |t|
-    t.string "location"
-    t.string "property_type"
-    t.string "property_name"
-    t.string "property_size"
-    t.integer "landlord_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tenants", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "phone_number"
-    t.integer "rent"
-    t.integer "property_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
+  add_foreign_key "addresses", "contacts"
+  add_foreign_key "contacts", "categories"
 end

@@ -1,47 +1,24 @@
 puts "🌱 Seeding spices..."
 
-
-  5.times do
-    Landlord.create(
-      name: Faker::Name.name(),
-      phone_number: Faker::Number.number(digits: 8),
-      email: Faker::Internet.email(),
-      img_url: Faker::Avatar.image
-    )
-  end
-
-  puts "🌱 1st seed done"
+# Seed your database here
 
 
-Landlord.all.each do |landlord|
-  5.times do
-    Property.create(
-      location: Faker::Address.city,
-      property_type: "#{Faker::Number.between(from: 2, to: 4)} Bedrooms",
-      property_name: Faker::Name.name(),
-      property_size: "#{Faker::Number.between(from: 600, to: 2000)} sq ft",
-      landlord_id: landlord.id
-        
-    )
-  end
-end
-puts "🌱 2nd seed done"
+# Create categories
+work = Category.create(name: 'Work')
+family = Category.create(name: 'Family')
+friends = Category.create(name: 'Friends')
 
-Property.all.each do |property|
-  5.times do
-    Tenant.create(
-      name: Faker::Name.name(),
-      email: Faker::Internet.email(),
-      phone_number: Faker::Number.number(digits: 8),
-      rent: Faker::Number.between(from: 10000, to: 60000),
-      property_id: property.id
+# Create contacts
+jane = Contact.create(first_name: 'Jane', last_name: 'Doe', email: 'jane@example.com', category: work)
+john = Contact.create(first_name: 'John', last_name: 'Smith', email: 'john@example.com', category: work)
+mary = Contact.create(first_name: 'Mary', last_name: 'Johnson', email: 'mary@example.com', category: family)
+bob = Contact.create(first_name: 'Bob', last_name: 'Jones', email: 'bob@example.com', category: friends)
 
-    )
-  end
-end
-
-
-
+# Create addresses
+Address.create(city: 'Anytown', state: 'CA', contact: jane)
+Address.create( city: 'Sometown', state: 'NY',  contact: john)
+Address.create( city: 'Hometown', state: 'FL',  contact: mary)
+Address.create( city: 'Othertown', state: 'TX',  contact: bob)
 
 
 puts "✅ Done seeding!"
