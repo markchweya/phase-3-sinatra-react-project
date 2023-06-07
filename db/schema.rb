@@ -10,34 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 6) do
+ActiveRecord::Schema.define(version: 2022_02_09_162102) do
 
-  create_table "addresses", force: :cascade do |t|
-    t.string "city"
-    t.string "county"
-    t.integer "contact_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["contact_id"], name: "index_addresses_on_contact_id"
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.integer "likes"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "reviews", force: :cascade do |t|
+    t.string "text"
+    t.integer "book_id"
   end
 
-  create_table "contacts", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.integer "category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "phone"
-    t.index ["category_id"], name: "index_contacts_on_category_id"
-  end
-
-  add_foreign_key "addresses", "contacts"
-  add_foreign_key "contacts", "categories"
 end
